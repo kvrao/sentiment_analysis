@@ -1,6 +1,9 @@
-# -*- coding: utf-8 -*-
 from pprint import pprint
 import nltk
+nltk.download('punkt')
+nltk.download('averaged_perceptron_tagger')
+from nltk.tokenize import word_tokenize
+
 import yaml
 import sys
 import os
@@ -129,12 +132,14 @@ def sentiment_score(review):
     return sum([sentence_score(sentence, None, 0.0) for sentence in review])
 
 if __name__ == "__main__":
-    text = """What can I say about this place. The staff of the restaurant is 
-    nice and the eggplant is not bad. Apart from that, very uninspired food, 
-    lack of atmosphere and too expensive. I am a staunch vegetarian and was 
-    sorely dissapointed with the veggie options on the menu. Will be the last 
-    time I visit, I recommend others to avoid."""
-
+#    text = """What can I say about this place. The staff of the restaurant is 
+#    nice and the eggplant is not bad. Apart from that, very uninspired food, 
+#    lack of atmosphere and too expensive. I am a staunch vegetarian and was 
+#    sorely dissapointed with the veggie options on the menu. Will be the last 
+#    time I visit, I recommend others to avoid."""
+    print("Enter your text")
+    text = input()
+    print("Analyzing the text")
     splitter = Splitter()
     postagger = POSTagger()
     dicttagger = DictionaryTagger([ 'dicts/positive.yml', 'dicts/negative.yml', 

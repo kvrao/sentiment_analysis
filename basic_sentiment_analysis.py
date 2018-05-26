@@ -9,25 +9,17 @@ import sys
 import os
 import re
 
-class Splitter(object):
-
+class WordSplit(object):
     def __init__(self):
-        self.nltk_splitter = nltk.data.load('tokenizers/punkt/english.pickle')
+        self.nltk_word_splitter = nltk.data.load('tokenizers/punkt/english.pickle')
         self.nltk_tokenizer = nltk.tokenize.TreebankWordTokenizer()
 
     def split(self, text):
-        """
-        input format: a paragraph of text
-        output format: a list of lists of words.
-            e.g.: [['this', 'is', 'a', 'sentence'], ['this', 'is', 'another', 'one']]
-        """
-        sentences = self.nltk_splitter.tokenize(text)
+        sentences = self.nltk_word_splitter.tokenize(text)
         tokenized_sentences = [self.nltk_tokenizer.tokenize(sent) for sent in sentences]
         return tokenized_sentences
 
-
-class POSTagger(object):
-
+class WordTagger(object):
     def __init__(self):
         pass
         
@@ -60,7 +52,7 @@ class DictionaryTagger(object):
                     self.dictionary[key].extend(curr_dict[key])
                 else:
                     self.dictionary[key] = curr_dict[key]
-                    self.max_key_size = max(self.max_key_size, len(key))
+                    self.max_key_size = max(self.max_key_size, len(str(key)))
 
     def tag(self, postagged_sentences):
         return [self.tag_sentence(sentence) for sentence in postagged_sentences]
@@ -132,17 +124,13 @@ def sentiment_score(review):
     return sum([sentence_score(sentence, None, 0.0) for sentence in review])
 
 if __name__ == "__main__":
-#    text = """What can I say about this place. The staff of the restaurant is 
-#    nice and the eggplant is not bad. Apart from that, very uninspired food, 
-#    lack of atmosphere and too expensive. I am a staunch vegetarian and was 
-#    sorely dissapointed with the veggie options on the menu. Will be the last 
-#    time I visit, I recommend others to avoid."""
     print("Enter your text")
     text = input()
     print("Analyzing the text")
-    splitter = Splitter()
-    postagger = POSTagger()
-    dicttagger = DictionaryTagger([ 'dicts/positive.yml', 'dicts/negative.yml', 
+    splitter = WordSplit()
+    postagger = WordTagger()
+
+    dicttagger = DictionaryTagger([ 'dicts/positive_words.yml', 'dicts/negative_words.yml', 
                                     'dicts/inc.yml', 'dicts/dec.yml', 'dicts/inv.yml'])
 
     splitted_sentences = splitter.split(text)
@@ -157,5 +145,3 @@ if __name__ == "__main__":
     print("analyzing sentiment...")
     score = sentiment_score(dict_tagged_sentences)
     print(score)
-
-

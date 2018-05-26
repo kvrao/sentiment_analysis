@@ -25,3 +25,9 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
+
+# library information
+lib/
+lib64
+pyvenv.cfg
+share/

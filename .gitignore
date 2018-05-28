@@ -27,7 +27,4 @@ pip-log.txt
 .mr.developer.cfg
 
 # library information
-lib/
-lib64
-pyvenv.cfg
-share/
+sentiment_env

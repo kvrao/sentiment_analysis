@@ -1,7 +1,7 @@
 from pprint import pprint
 import nltk
-#nltk.download('punkt')
-#nltk.download('averaged_perceptron_tagger')
+nltk.download('punkt')
+nltk.download('averaged_perceptron_tagger')
 from nltk.tokenize import word_tokenize
 
 import yaml

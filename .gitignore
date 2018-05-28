@@ -25,6 +25,7 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
+.ipynb_checkpoints/
 
 # library information
 sentiment_env

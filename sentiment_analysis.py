@@ -122,26 +122,3 @@ def sentence_score(sentence_tokens, previous_token, acum_score):
 
 def sentiment_score(review):
     return sum([sentence_score(sentence, None, 0.0) for sentence in review])
-
-#if __name__ == "__main__":
-#    print("Enter your text")
-#    text = input()
-#    print("Analyzing the text")
-#    splitter = WordSplit()
-#    postagger = POSTagger()
-#
-#    dicttagger = DictionaryTagger([ 'dicts/positive_words.yml', 'dicts/negative_words.yml', 
-#                                    'dicts/inc.yml', 'dicts/dec.yml', 'dicts/inv.yml'])
-#
-#    splitted_sentences = splitter.split(text)
-#    pprint(splitted_sentences)
-#
-#    pos_tagged_sentences = postagger.pos_tag(splitted_sentences)
-#    pprint(pos_tagged_sentences)
-#
-#    dict_tagged_sentences = dicttagger.tag(pos_tagged_sentences)
-#    pprint(dict_tagged_sentences)
-#
-#    print("analyzing sentiment...")
-#    score = sentiment_score(dict_tagged_sentences)
-#    print(score)
